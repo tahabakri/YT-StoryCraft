@@ -9,8 +9,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/ai-story-generator' : '',
-  trailingSlash: true,
   experimental: {
     typedRoutes: false
   },
@@ -18,8 +16,6 @@ const nextConfig = {
     NEXT_TELEMETRY_DISABLED: '1'
   },
   productionBrowserSourceMaps: false,
-  // Remove basePath for Vercel deployment since it's specific to GitHub Pages
+  // Configure for server-side rendering only, no static exports
   output: 'standalone'
 }
-
-export default nextConfig

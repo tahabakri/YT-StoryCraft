@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server"
 import { YoutubeTranscript, TranscriptResponse } from "youtube-transcript"
 
+// Mark route as dynamic
+export const dynamic = 'force-dynamic';
+
 interface TranscriptItem {
   text: string;
   offset: number;

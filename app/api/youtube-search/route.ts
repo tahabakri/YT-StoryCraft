@@ -1,8 +1,18 @@
-import { searchYouTube } from "@/app/lib/youtube";
-import { getYouTubeApiKey, ENV_ERRORS } from "@/app/lib/env";
+import { searchYouTube } from "@/app/lib/youtube"
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: Request) {
+  const apiKey = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
+  if (!apiKey) {
+    console.error("YouTube API key missing");
+    return NextResponse.json(
+      { error: "YouTube API key not configured" },
+      { status: 500 }
+    );
+  }
+
   try {
     const { searchParams } = new URL(request.url)
     const query = searchParams.get("query")
@@ -15,22 +25,14 @@ export async function GET(request: Request) {
       )
     }
 
-    let apiKey: string;
-    try {
-      apiKey = getYouTubeApiKey()
-    } catch (error) {
-      return NextResponse.json(
-        { error: ENV_ERRORS.YOUTUBE_API_KEY_MISSING },
-        { status: 500 }
-      )
-    }
-
+    console.log(`Searching YouTube for: ${query}`);
     const videos = await searchYouTube(
       query,
       apiKey,
       maxResults ? parseInt(maxResults) : undefined
     )
 
+    console.log(`Found ${videos.length} videos for query: ${query}`);
     return NextResponse.json(videos)
   } catch (error) {
     console.error("YouTube search error:", error)

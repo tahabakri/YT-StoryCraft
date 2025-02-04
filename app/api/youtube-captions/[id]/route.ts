@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server"
 import { google } from "googleapis"
 
+// Mark route as dynamic
+export const dynamic = 'force-dynamic';
+
 const youtube = google.youtube('v3')
 
 const api_key = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
