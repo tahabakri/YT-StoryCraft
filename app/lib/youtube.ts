@@ -5,14 +5,16 @@
 
 const BASE_URL = "https://www.googleapis.com/youtube/v3";
 
-export interface VideoDetails {
-    videoId: string;
+export interface YouTubeVideo {
+    id: string;
     title: string;
     description: string;
-    thumbnail: string;
-    hasCaption: boolean;
-    publishedAt: string;
+    thumbnailUrl: string;
+    duration?: string;
     channelTitle: string;
+    publishedAt: string;
+    viewCount?: number;
+    tags?: string[];
 }
 
 export class YouTubeAPIError extends Error {
@@ -63,7 +65,7 @@ export async function searchYouTube(
     query: string,
     apiKey: string,
     maxResults: number = 10
-): Promise<VideoDetails[]> {
+): Promise<YouTubeVideo[]> {
     const url = new URL(`${BASE_URL}/search`);
     url.searchParams.append('part', 'snippet');
     url.searchParams.append('type', 'video');
@@ -82,14 +84,13 @@ export async function searchYouTube(
 
         console.log(`Found ${data.items.length} videos for query:`, query);
 
-        const videos = data.items.map((item: any): VideoDetails => ({
-            videoId: item.id.videoId,
+        const videos = data.items.map((item: any): YouTubeVideo => ({
+            id: item.id.videoId,
             title: item.snippet.title,
             description: item.snippet.description,
-            thumbnail: item.snippet.thumbnails.high?.url || 
+            thumbnailUrl: item.snippet.thumbnails.high?.url || 
                       item.snippet.thumbnails.medium?.url || 
                       item.snippet.thumbnails.default?.url,
-            hasCaption: false,
             publishedAt: item.snippet.publishedAt,
             channelTitle: item.snippet.channelTitle
         }));
@@ -104,9 +105,9 @@ export async function searchYouTube(
 export async function getVideoDetails(
     videoId: string,
     apiKey: string
-): Promise<VideoDetails> {
+): Promise<YouTubeVideo> {
     const url = new URL(`${BASE_URL}/videos`);
-    url.searchParams.append('part', 'snippet,contentDetails');
+    url.searchParams.append('part', 'snippet,contentDetails,statistics');
     url.searchParams.append('id', videoId);
     url.searchParams.append('key', apiKey);
 
@@ -119,16 +120,18 @@ export async function getVideoDetails(
         }
 
         const item = data.items[0];
-        const video: VideoDetails = {
-            videoId,
+        const video: YouTubeVideo = {
+            id: videoId,
             title: item.snippet.title,
             description: item.snippet.description,
-            thumbnail: item.snippet.thumbnails.high?.url || 
+            thumbnailUrl: item.snippet.thumbnails.high?.url || 
                       item.snippet.thumbnails.medium?.url || 
                       item.snippet.thumbnails.default?.url,
-            hasCaption: item.contentDetails.caption === 'true',
+            duration: item.contentDetails?.duration,
             publishedAt: item.snippet.publishedAt,
-            channelTitle: item.snippet.channelTitle
+            channelTitle: item.snippet.channelTitle,
+            viewCount: parseInt(item.statistics?.viewCount || '0'),
+            tags: item.snippet.tags || []
         };
 
         return video;
@@ -142,9 +145,9 @@ export async function getTrendingVideos(
     apiKey: string,
     maxResults: number = 10,
     regionCode: string = 'US'
-): Promise<VideoDetails[]> {
+): Promise<YouTubeVideo[]> {
     const url = new URL(`${BASE_URL}/videos`);
-    url.searchParams.append('part', 'snippet,contentDetails');
+    url.searchParams.append('part', 'snippet,contentDetails,statistics');
     url.searchParams.append('chart', 'mostPopular');
     url.searchParams.append('regionCode', regionCode);
     url.searchParams.append('maxResults', maxResults.toString());
@@ -161,16 +164,18 @@ export async function getTrendingVideos(
 
         console.log(`Found ${data.items.length} trending videos`);
 
-        const videos = data.items.map((item: any): VideoDetails => ({
-            videoId: item.id,
+        const videos = data.items.map((item: any): YouTubeVideo => ({
+            id: item.id,
             title: item.snippet.title,
             description: item.snippet.description,
-            thumbnail: item.snippet.thumbnails.high?.url || 
+            thumbnailUrl: item.snippet.thumbnails.high?.url || 
                       item.snippet.thumbnails.medium?.url || 
                       item.snippet.thumbnails.default?.url,
-            hasCaption: item.contentDetails.caption === 'true',
+            duration: item.contentDetails?.duration,
             publishedAt: item.snippet.publishedAt,
-            channelTitle: item.snippet.channelTitle
+            channelTitle: item.snippet.channelTitle,
+            viewCount: parseInt(item.statistics?.viewCount || '0'),
+            tags: item.snippet.tags || []
         }));
 
         return videos;

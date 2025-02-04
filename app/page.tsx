@@ -5,11 +5,11 @@ import { YoutubeUrlForm } from "./components/youtube-url-form"
 import { StoryEditor } from "./components/story-editor"
 import { Toaster } from "@/components/ui/toaster"
 import { useToast } from "@/components/ui/use-toast"
-import { type VideoDetails } from "./lib/youtube"
+import { type YouTubeVideo } from "./lib/youtube"
 import { Search } from "lucide-react"
 
 export default function Page() {
-  const [videoData, setVideoData] = useState<VideoDetails[]>([])
+  const [videoData, setVideoData] = useState<YouTubeVideo[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const { toast } = useToast()
@@ -103,10 +103,10 @@ export default function Page() {
             ) : videoData.length > 0 ? (
               <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
                 {videoData.map((video) => (
-                  <div key={video.videoId} className="thumbnail-container">
+                  <div key={video.id} className="thumbnail-container">
                     <div className="thumbnail-hover">
                       <img
-                        src={video.thumbnail}
+                        src={video.thumbnailUrl}
                         alt={video.title}
                         className="w-full h-48 object-cover"
                       />

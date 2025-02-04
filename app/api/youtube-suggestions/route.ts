@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server"
-import { searchYouTube, getTrendingVideos, type VideoDetails } from "@/app/lib/youtube"
-import { getYouTubeApiKey, ENV_ERRORS } from "@/app/lib/env"
+import { searchYouTube, getTrendingVideos, type YouTubeVideo } from "@/app/lib/youtube"
 
 export const dynamic = 'force-dynamic';
 
