@@ -18,13 +18,13 @@ interface StoryOptions {
   customPrompt?: string
 }
 
-const OPTIONS_CONFIG: Record<CategoryType, string[]> = {
+const OPTIONS_CONFIG = {
   genre: ["Fantasy", "Sci-Fi", "Thriller", "Romance", "Horror", "Comedy"],
   tone: ["Inspirational", "Dramatic", "Sarcastic", "Neutral", "Mysterious", "Humorous"],
   style: ["Narrative", "Descriptive", "Expository", "Persuasive", "Poetic", "Conversational"],
   voice: ["Natural", "Formal", "Casual", "Professional", "Friendly", "Authoritative"],
   refine: [] // Handled separately with sliders
-} as const
+} satisfies Record<CategoryType, readonly string[]>
 
 interface StoryOptionsProps {
   options: StoryOptions
