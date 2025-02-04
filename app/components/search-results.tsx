@@ -48,6 +48,7 @@ export function SearchResults({
     setSelectedGenre(value)
     onGenreSelect?.(value)
   }
+
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
@@ -102,7 +103,7 @@ export function SearchResults({
                   duration={video.duration}
                   thumbnailUrl={video.thumbnailUrl}
                   channelTitle={video.channelTitle}
-                  viewCount={video.viewCount}
+                  viewCount={video.viewCount?.toString()}
                   tags={video.tags}
                 />
               </button>
