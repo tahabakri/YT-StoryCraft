@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Slider } from "@/components/ui/slider"
+import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group"
+import { Label } from "../../components/ui/label"
+import { Input } from "../../components/ui/input"
+import { Slider } from "../../components/ui/slider"
 
 type CategoryType = "genre" | "tone" | "style" | "voice" | "refine"
 

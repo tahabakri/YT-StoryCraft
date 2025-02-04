@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { VideoData } from '@/app/components/story-editor';
+import { VideoData } from '../app/components/story-editor';
 
 interface StoryOptions {
   genre: string;

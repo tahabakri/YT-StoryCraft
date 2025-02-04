@@ -1,10 +1,10 @@
 'use client'
 
 import { useState, useRef } from "react"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Slider } from "@/components/ui/slider"
-import { 
+import { Button } from "../../components/ui/button"
+import { Card } from "../../components/ui/card"
+import { Slider } from "../../components/ui/slider"
+import {
   Play, 
   Pause, 
   Download, 
@@ -15,10 +15,10 @@ import {
   Gauge
 } from "lucide-react"
 import { generateVoiceover } from "../lib/elevenlabs"
-import { useToast } from "@/components/ui/use-toast"
+import { useToast } from "../../components/ui/use-toast"
 import { VoiceShowcase } from "./voice-showcase"
 import { WaveformVisualizer } from "./waveform-visualizer"
-import { cn } from "@/lib/utils"
+import { cn } from "../../lib/utils"
 
 interface Voice {
   id: string

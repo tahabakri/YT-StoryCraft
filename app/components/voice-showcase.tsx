@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { Card } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Card } from "../../components/ui/card"
+import { Avatar, AvatarFallback, AvatarImage } from "../../components/ui/avatar"
 import { Play, Pause } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "../../components/ui/button"
 
 interface Voice {
   id: string
@@ -134,7 +134,7 @@ export function VoiceShowcase({ selectedVoice, onVoiceSelect }: VoiceShowcasePro
               </div>
               <Button
                 variant="ghost"
-                size="icon"
+                size="sm"
                 className={`rounded-full transition-all duration-300
                   ${playingPreview === voice.id
                     ? 'bg-purple-500 text-white hover:bg-purple-600'

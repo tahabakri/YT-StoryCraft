@@ -1,11 +1,11 @@
 'use client'
 
 import { VideoPreview } from "./video-preview"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
+import { ScrollArea } from "../../components/ui/scroll-area"
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "../../components/ui/tabs"
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "../../components/ui/select"
 import { useEffect, useState } from "react"
-import { type YouTubeVideo } from "@/app/lib/youtube"
+import { type YouTubeVideo } from "../lib/youtube"
 
 const GENRES = [
   { label: 'All', value: '' },

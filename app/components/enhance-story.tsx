@@ -1,11 +1,11 @@
 'use client'
 
 import { useState } from "react"
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { Card } from "../../components/ui/card"
+import { Button } from "../../components/ui/button"
 import { Sparkles, Wand2, Zap, Layers, MessagesSquare } from "lucide-react"
-import { useToast } from "@/components/ui/use-toast"
-import { Progress } from "@/components/ui/progress"
+import { useToast } from "../../components/ui/use-toast"
+import { Progress } from "../../components/ui/progress"
 
 interface EnhancementOption {
   id: string

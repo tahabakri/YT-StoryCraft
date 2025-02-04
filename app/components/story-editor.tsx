@@ -5,10 +5,10 @@ import { VideoPreview } from "./video-preview"
 import { StoryOptions } from "./story-options"
 import { VoiceoverControls } from "./voiceover-controls"
 import { AIStoryGenerator } from "./ai-story-generator"
-import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "../../components/ui/button"
+import { Textarea } from "../../components/ui/textarea"
+import { ScrollArea } from "../../components/ui/scroll-area"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs"
 import { 
   BookOpen, // Genre
   Palette, // Style
@@ -20,7 +20,7 @@ import {
   Wand2, // Generate
   RefreshCw // Regenerate
 } from "lucide-react"
-import { useToast } from "@/components/ui/use-toast"
+import { useToast } from "../../components/ui/use-toast"
 
 export interface VideoData {
   id: string

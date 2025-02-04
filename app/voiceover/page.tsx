@@ -1,6 +1,6 @@
 "use client"
 
-import { VoiceoverControls } from '@/app/components/voiceover-controls'
+import { VoiceoverControls } from '../components/voiceover-controls'
 
 // For demo purposes, we'll assume the story is passed from the previous step
 const DEMO_STORY = `Once upon a time in a digital realm, there was a story waiting to be brought to life through the magic of voice. This story was crafted with care and imagination, ready to be transformed into an engaging audio experience.`

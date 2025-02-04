@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react"
-import { Progress } from "@/components/ui/progress"
+import { Progress } from "../../components/ui/progress"
 
 interface ProgressBarProps {
   status: "idle" | "processing" | "complete" | "error"

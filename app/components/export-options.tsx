@@ -1,7 +1,7 @@
 'use client';
 
 import { Download } from 'lucide-react';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '../../components/ui/use-toast';
 
 interface ExportFormat {
   id: string;
