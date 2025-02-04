@@ -17,7 +17,9 @@ const nextConfig = {
   env: {
     NEXT_TELEMETRY_DISABLED: '1'
   },
-  productionBrowserSourceMaps: false
+  productionBrowserSourceMaps: false,
+  // Remove basePath for Vercel deployment since it's specific to GitHub Pages
+  output: 'standalone'
 }
 
 export default nextConfig
