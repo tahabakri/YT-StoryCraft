@@ -3,8 +3,8 @@
 import { useState } from "react"
 import { YoutubeUrlForm } from "./components/youtube-url-form"
 import { StoryEditor } from "./components/story-editor"
-import { Toaster } from "@/components/ui/toaster"
-import { useToast } from "@/components/ui/use-toast"
+import { Toaster } from "../components/ui/toaster"
+import { useToast } from "../components/ui/use-toast"
 import { type YouTubeVideo } from "./lib/youtube"
 import { Search } from "lucide-react"
 

@@ -2,9 +2,9 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { YoutubeUrlForm } from "@/app/components/youtube-url-form"
-import { StoryTypeSelector } from "@/app/components/story-type-selector"
-import { Card } from "@/components/ui/card"
+import { YoutubeUrlForm } from "../components/youtube-url-form"
+import { StoryTypeSelector } from "../components/story-type-selector"
+import { Card } from "../../components/ui/card"
 
 interface VideoData {
   id: string
