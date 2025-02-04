@@ -13,6 +13,10 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
     "types": ["react", "react-dom", "react-router-dom"]
   },
   "include": ["**/*.ts", "**/*.tsx"],
