@@ -9,9 +9,15 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  output: 'export', // Enables static site generation
-  basePath: process.env.NODE_ENV === 'production' ? '/ai-story-generator' : '', // If deploying to subpath
+  basePath: process.env.NODE_ENV === 'production' ? '/ai-story-generator' : '',
   trailingSlash: true,
+  experimental: {
+    typedRoutes: false
+  },
+  env: {
+    NEXT_TELEMETRY_DISABLED: '1'
+  },
+  productionBrowserSourceMaps: false
 }
 
 export default nextConfig
