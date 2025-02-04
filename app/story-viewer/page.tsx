@@ -1,13 +1,13 @@
 'use client'
 
 import { useState } from "react"
-import { StoryPreview } from "@/app/components/story-preview"
-import { EnhanceStory } from "@/app/components/enhance-story"
-import { VoiceoverControls } from "@/app/components/voiceover-controls"
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { StoryPreview } from "../components/story-preview"
+import { EnhanceStory } from "../components/enhance-story"
+import { VoiceoverControls } from "../components/voiceover-controls"
+import { Card } from "../../components/ui/card"
+import { Button } from "../../components/ui/button"
 import { Download, FileText, FileImage, Share2 } from "lucide-react"
-import { useToast } from "@/components/ui/use-toast"
+import { useToast } from "../../components/ui/use-toast"
 
 interface ExportOption {
   id: string

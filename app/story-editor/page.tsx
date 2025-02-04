@@ -1,6 +1,6 @@
 "use client";
 
-import { StoryEditor } from '@/app/components/story-editor'
+import { StoryEditor } from '../components/story-editor'
 
 export default function StoryEditorPage() {
   // Provide default values for required VideoData properties
