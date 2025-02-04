@@ -8,7 +8,10 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
-  }
+  },
+  output: 'export', // Enables static site generation
+  basePath: process.env.NODE_ENV === 'production' ? '/ai-story-generator' : '', // If deploying to subpath
+  trailingSlash: true,
 }
 
 export default nextConfig
