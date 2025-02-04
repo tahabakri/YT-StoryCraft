@@ -13,36 +13,28 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   const { searchParams } = new URL(request.url)
-  const format = searchParams.get("format") || "srt"
-  const language = searchParams.get("language")
+  const format = searchParams.get("format") || "json"
 
   if (!params.id) {
-    return NextResponse.json({ error: "Caption ID is required" }, { status: 400 })
+    return NextResponse.json({ error: "Video ID is required" }, { status: 400 })
   }
 
   try {
-    const response = await youtube.captions.download({
+    const response = await youtube.videos.list({
       key: api_key,
-      id: params.id,
-      tfmt: format as any,
-      tlang: language || undefined
-    })
+      id: [params.id],
+      part: ['snippet']
+    });
 
-    const captionData = response.data
-    if (format === "srt") {
-      return new NextResponse(captionData as string, {
-        headers: {
-          "Content-Type": "application/x-subrip",
-          "Content-Disposition": `attachment; filename="caption.${format}"`
-        }
-      })
+    if (!response.data.items?.length) {
+      return NextResponse.json({ error: "Video not found" }, { status: 404 });
     }
 
-    return NextResponse.json(captionData)
+    return NextResponse.json(response.data.items[0].snippet);
   } catch (error: any) {
-    console.error("Error downloading caption:", error)
-    const status = error.response?.status || 500
-    const message = error.response?.data?.error?.message || "Failed to download caption"
-    return NextResponse.json({ error: message }, { status })
+    console.error("Error fetching video:", error);
+    const status = error.response?.status || 500;
+    const message = error.response?.data?.error?.message || "Failed to fetch video details";
+    return NextResponse.json({ error: message }, { status });
   }
 }
